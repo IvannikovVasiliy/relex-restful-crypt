@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableOperations-28-02-2023
+      author: ivannikov
+      changes:
+        - createTable:
+            tableName: wallets
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_wallets_id
+                    nullable: false
+              - column:
+                  name: btc
+                  type: double
+              - column:
+                  name: ton
+                  type: double
+              - column :
+                  name: user_id
+                  type: bigint
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: wallets
+            constraintName: fk_wallets_userid
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: users
+        - rollback:
+            - dropForeignKeyConstraint:
+                baseTableName: wallets
+                constraintName: fk_wallets_userid
+            - dropTable:
+                tableName: wallets

@@ -1,0 +1,30 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: insertValuesIntoOperations-28-02-2023
+      author: ivannikov
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: description
+                  value: push
+            tableName: operations
+        - insert:
+            columns:
+              - column:
+                  name: description
+                  value: pop
+            tableName: operations
+        - insert:
+            columns:
+              - column:
+                  name: description
+                  value: buy
+            tableName: operations
+        - insert:
+            columns:
+              - column:
+                  name: description
+                  value: sell
+            tableName: operations

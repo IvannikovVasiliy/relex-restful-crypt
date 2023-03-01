@@ -1,0 +1,29 @@
+version: '3'
+services:
+  postgresdb:
+    image: postgres:15-alpine3.17
+    container_name: postgresdb
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=crypt_exchanger
+
+  pgadmin:
+    container_name: pg_admin_relex_restful_api
+    image: dpage/pgadmin4:6.20
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+
+  crypt:
+    container_name: crypt_relex
+    image: relex-restful-api
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresdb

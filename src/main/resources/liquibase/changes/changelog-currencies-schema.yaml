@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableCurrencies-28-02-2023
+      author: ivannikov
+      changes:
+        - createTable:
+            tableName: currencies
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_currencies_id
+                    nullable: false
+              - column:
+                  name: name
+                  type: nvarchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: value
+                  type: double
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+        - rollback:
+            - dropTable:
+                tableName: currencies

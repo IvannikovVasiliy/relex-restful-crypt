@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableUsers-28-02-2023
+      author: ivannikov
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_users_id
+                    nullable: false
+              - column:
+                  name: username
+                  type: nvarchar(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: email
+                  type: nvarchar(64)
+                  constraints:
+                    unique: true
+              - column:
+                  name: password
+                  type: nvarchar(60)
+                  constraints:
+                    nullable: false
+        - rollback:
+            - dropTable:
+                tableName: users
+
+  - changeSet:
+      id: createTableUsersRoles-28-02-2023
+      author: ivannikov
+      changes:
+        - createTable:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: roles
+                  type: nvarchar(50)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: users_roles
+            constraintName: fk_userid_users-roles
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: users
+        - rollback:
+            - dropForeignKeyConstraint:
+                baseTableName: users_roles
+                constraintName: fk_historyoperations_operationid
+            - dropTable:
+                tableName: users_roles

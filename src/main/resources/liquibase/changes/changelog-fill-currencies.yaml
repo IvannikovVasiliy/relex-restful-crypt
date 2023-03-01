@@ -1,0 +1,42 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: insertDefaultValuesIntoUsers-28-02-2023
+      author: ivannikov
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: btc
+              - column:
+                  name: value
+                  value: 1
+            tableName: currencies
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: ton
+              - column:
+                  name: value
+                  value: 10
+            tableName: currencies
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: rub
+              - column:
+                  name: value
+                  value: 100
+            tableName: currencies

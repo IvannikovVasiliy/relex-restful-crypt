@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableCards-28-02-2023
+      author: ivannikov
+      changes:
+        - createTable:
+            tableName: cards
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_cards_id
+                    nullable: false
+              - column:
+                  name: rub
+                  type: double
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: cards
+            constraintName: fk_cards_userid
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: users
+        - rollback:
+            - dropForeignKeyConstraint:
+                baseTableName: cards
+                constraintName: fk_cards_userid
+            - dropTable:
+                tableName: cards

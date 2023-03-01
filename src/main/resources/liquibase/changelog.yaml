@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - include:
+      file: liquibase/changes/changelog-users-usersroles-schema.yaml
+  - include:
+      file: liquibase/changes/changelog-fill-users-roles.yaml
+  - include:
+      file: liquibase/changes/changelog-cards-schema.yaml
+  - include:
+      file: liquibase/changes/changelog-currencies-schema.yaml
+  - include:
+      file: liquibase/changes/changelog-fill-currencies.yaml
+  - include:
+      file: liquibase/changes/changelog-operations-schema.yaml
+  - include:
+      file: liquibase/changes/changelog-fill-operations.yaml
+  - include:
+      file: liquibase/changes/changelog-wallets-schema.yaml
+  - include:
+      file: liquibase/changes/changelog-historyoperations-schema.yaml

@@ -1,0 +1,29 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: insertDefaultValuesIntoUsers-27-02-2023
+      author: ivannikov
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: username
+                  value: admin
+              - column:
+                  name: password
+                  value: $2a$12$dFLaQWhUD.ph6ymp6czlr.QhmJpPxefrBU.b3IoYMY7HpfhAxTsFu
+            tableName: users
+
+  - changeSet:
+      id: insertDefaultValuesIntoUsersRoles
+      author: ivannikov
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: roles
+                  value: ADMIN
+            tableName: users_roles
